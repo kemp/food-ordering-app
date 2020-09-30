@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+#app {
+    display: grid;
+    grid-template-areas: "header header" "main aside";
+    grid-template-rows: 120px 1fr;
+    min-height: 100vh;
+    align-items: stretch;
+}
+
+#app header {
+    grid-area: header;
+    background-image: url('./assets/img/whataburger_header.png');
+    background-color: #FF770F;
+    background-size: cover;
+    background-position: center;
+}
+
+#app main {
+    grid-area: main;
+    background-color: #525252;
+}
+
+#app aside {
+    grid-area: aside;
+    background-color: #EDEDED;
+    padding: 10px;
+}
+
+#app main .section {
+    width: 100%;
+    color: white;
+    padding: 5px 20px;
+}
+
+#app main button[type=submit] {
+    background: #FF770F;
+    display: block;
+    margin: 10px auto;
+    padding: 5px 30px;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.5rem;
+}

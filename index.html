@@ -5,12 +5,96 @@
     <title>Food Ordering App</title>
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+    <link rel="stylesheet" href="main.css">
 </head>
 <body>
-    <h1>Hello World!</h1>
-    We are using node <script>document.write(process.versions.node)</script>,
-    Chrome <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
+
+    <div id="app">
+        <header></header>
+
+        <main>
+            <form onsubmit="window.submitOrder(this); return false">
+                <div class="section">
+                    <h2><label for="name">Your Name</label></h2>
+
+                    <input type="text" name="Name" id="name">
+                </div>
+
+                <div class="section">
+                    <h2>Payment Method</h2>
+
+                    <input type="radio" name="Payment method" id="cash" value="Cash">
+                    <label for="cash">Cash</label>
+
+                    <input type="radio" name="Payment method" id="card" value="Card">
+                    <label for="card">Card</label>
+                </div>
+
+                <div class="section">
+                    <h2>Entree</h2>
+
+
+                    <input type="radio" name="Entree" id="burger" value="What-a-Burger">
+                    <label for="burger">What-a-Burger</label>
+
+                    <input type="radio" name="Entree" id="patty_melt" value="Patty Melt">
+                    <label for="patty_melt">Patty Melt</label>
+
+                    <input type="radio" name="Entree" id="salad" value="Salad">
+                    <label for="salad">Salad</label>
+                </div>
+
+                <div class="section">
+                    <h2>Drink</h2>
+
+                    <input type="radio" name="Drink" id="water" value="Water">
+                    <label for="water">Water</label>
+
+                    <input type="radio" name="Drink" id="dr_pepper" value="Dr. Pepper">
+                    <label for="dr_pepper">Dr. Pepper</label>
+                </div>
+
+                <div class="section">
+                    <button type="submit">Place Order</button>
+                </div>
+            </form>
+        </main>
+
+        <aside>
+            <h2>Orders</h2>
+
+            <div id="orders">
+
+            </div>
+        </aside>
+    </div>
+
+    <script>
+        ((w, d, l) => {
+            function submitOrder(form) {
+
+                let ordersTable = document.getElementById('orders');
+
+                let newRow = document.createElement('TR');
+
+                newRow.innerHTML += '<hr>';
+
+                for(let input of form) {
+                    if (input.type !== 'radio' && input.type !== 'submit' || input.checked) {
+                        newRow.innerHTML += `${input.name}: ${input.value}<br>`;
+                    }
+                }
+
+                newRow.innerHTML += '<hr>';
+
+                ordersTable.appendChild(newRow);
+
+                form.reset();
+            }
+
+            w.submitOrder = submitOrder;
+        })(window, document, location);
+    </script>
 </body>
 </html>
 
